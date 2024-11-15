@@ -2,7 +2,7 @@ import { Link, Outlet, useLoaderData, useSearchParams } from "@remix-run/react"
 import { HydrationBoundary, useQuery } from "@tanstack/react-query"
 import { getWorks, homeGetParams, homeQuery } from "./getData"
 import queryOptions from "~/api/works/queryOption"
-import Test from "./Test.client"
+
 
 export default function Index () {
   const { dehydratedState, params } = useLoaderData<any>()
@@ -43,7 +43,7 @@ const Works= ({params})=> {
                 <Link 
                   to={`./${d.id}`} key={d.id} 
                   preventScrollReset={true}
-                  className="border p-2 min-h-[400px] "
+                  className="border p-2 min-h-[200px] "
                 >
                   <p className="text-xs text-accent-content ">
                     {d.key}
