@@ -8,6 +8,9 @@ declare module "@remix-run/node" {
   }
 }
 
+const build= process.env.NODE_ENV === 'production'
+const noExternal= build ? ['react-easy-sort', 'tslib'] : ['react-easy-sort', 'tslib']
+// console.log(noExternal)
 export default defineConfig({
   plugins: [
     remix({
@@ -16,9 +19,27 @@ export default defineConfig({
         v3_relativeSplatPath: true,
         v3_throwAbortReason: true,
         v3_singleFetch: true,
-        v3_lazyRouteDiscovery: true,
+        // v3_lazyRouteDiscovery: true,
       },
     }),
     tsconfigPaths(),
   ],
+  esbuild: {
+    // pure: process.env.NODE_ENV === 'production' ? ['console.log'] : [],
+    // drop: build ? ['console', 'debugger'] : [],
+  },
+  ssr: {
+    noExternal: []
+  },
+  
+  // server: {
+  //   port: 3000
+  // },
 });
+
+declare global {
+  interface Window {
+    ENV: any;
+    
+  }
+}

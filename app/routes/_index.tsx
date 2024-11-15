@@ -1,55 +1,59 @@
 import type { MetaFunction } from "@remix-run/node";
 
-export const meta: MetaFunction = () => {
+import { getCategory, homeGetParams, homeQuery } from "../layout/home/getData";
+// import AnimatedCursor from "react-animated-cursor";
+
+import type { LinksFunction } from "@remix-run/node"; // or cloudflare/deno
+import Layout1 from "~/layout/home/Layout1";
+import HomeWrapper from "~/layout/home/HomeWrapper";
+import { Outlet, useLoaderData } from "@remix-run/react";
+// import { dehydrate, HydrationBoundary, QueryClient, useQuery } from "@tanstack/react-query";
+
+
+const links: LinksFunction = () => {
+  return [
+    { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180", },
+    { rel: "icon",type: "image/png", sizes: "32x32", href: "/favicon/favicon-32x32.png" },
+    { rel: "icon",type: "image/png", sizes: "16x16", href: "/favicon/favicon-16x16.png" },
+    { rel: "manifest", href: "/favicon/site.webmanifest" },
+    { rel: "mask-icon", href: "/favicon/safari-pinned-tab.svg", color: "#5bbad5" },
+  ];
+};
+
+
+const meta: MetaFunction = () => {
+  return [
+    { title: "메메지션" },
+    { name: "확실한 성공의 길을 제시합니다.", content: "메메지션과 함께 하세요!" },
+    { name: "msapplication-TileColor", content: "#da532c" },
+    { name: "theme-color", content: "#ffffff" },
+  ];
+};
+export { 
+  getCategory as loader, 
+  links, meta 
+}
+
+export const clientLoader = async ({ params, serverLoader }) => {
+  return {}
+};
+
+/* export const meta: MetaFunction = () => {
   return [
     { title: "New Remix App" },
     { name: "description", content: "Welcome to Remix!" },
   ];
-};
+}; */
 
-export default function Index() {
+export default function Index({ children }) {
+  const { dehydratedState } = useLoaderData<typeof getCategory>()
   return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="flex flex-col items-center gap-16">
-        <header className="flex flex-col items-center gap-9">
-          <h1 className="leading text-2xl font-bold text-gray-800 dark:text-gray-100">
-            Welcome to <span className="sr-only">Remix</span>
-          </h1>
-          <div className="h-[144px] w-[434px]">
-            <img
-              src="/logo-light.png"
-              alt="Remix"
-              className="block w-full dark:hidden"
-            />
-            <img
-              src="/logo-dark.png"
-              alt="Remix"
-              className="hidden w-full dark:block"
-            />
-          </div>
-        </header>
-        <nav className="flex flex-col items-center justify-center gap-4 rounded-3xl border border-gray-200 p-6 dark:border-gray-700">
-          <p className="leading-6 text-gray-700 dark:text-gray-200">
-            What&apos;s next?
-          </p>
-          <ul>
-            {resources.map(({ href, text, icon }) => (
-              <li key={href}>
-                <a
-                  className="group flex items-center gap-3 self-stretch p-3 leading-normal text-blue-700 hover:underline dark:text-blue-500"
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {icon}
-                  {text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </div>
-    </div>
+    <>
+    {/* {children} */}
+    <Outlet />
+    <Layout1 dehydratedState={dehydratedState}/>
+    
+    </>
   );
 }
 

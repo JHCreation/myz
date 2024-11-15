@@ -2,11 +2,228 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  @apply bg-white dark:bg-gray-950;
-
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
+@layer base {
+  /* @font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(/fonts/Roboto.woff2) format('woff2');
+  } */
+  :root {
+    --color-input: theme(colors.input);
+    --color-draggable: theme(colors.amber.200);
+    /* --color-secondary: 111 114 185; */
   }
+  .dragged {
+    /* border: 1px solid black; */
+    z-index: 9999;
+  }
+
+  .ag-theme-quartz {
+    /* --ag-active-color: rgb(126, 46, 132); */
+    --ag-active-color: theme(colors.primary);
+    /* --ag-checkbox-checked-color: var(--ag-active-color); */
+  }
+  
+  .ag-theme-quartz.jhc-admin {
+    --ag-wrapper-border-radius: 8px;
+    --ag-font-family: theme(fontFamily.suite);
+    /* --ag-foreground-color: rgb(46, 46, 46); */
+    /* --ag-foreground-color: theme(colors.neutral); */
+    --ag-background-color: rgb(255, 255, 255);
+    /* --ag-header-foreground-color: rgb(204, 245, 172); */
+    --ag-foreground-color: theme(colors.base-content);
+    --ag-header-foreground-color: theme(colors.neutral-content);
+    --ag-header-background-color: theme(colors.neutral);
+    --ag-background-color: theme(colors.base-100);
+    --ag-odd-row-background-color: oklch(var(--b3)/.9);
+    /* --ag-odd-row-background-color: rgba(255, 0, 0, 0.03); */
+    --ag-header-column-resize-handle-color: rgb(76, 76, 76);
+    --ag-grid-size: 6px;
+    --ag-font-size: 12px;
+
+    /* --ag-selected-row-background-color: rgb(0, 255, 0, 0.1); */
+    /* --ag-row-height: calc(var(--ag-font-size) + var(--ag-grid-size)* 3.5); */
+    /* --ag-font-family: monospace; */
+  }
+  
+  :root {
+    --toastify-color-progress-light: theme(colors.orange.600);
+  }
+  
+  
+  /* .ag-theme-quartz .ag-header-cell-label {
+    font-style: italic;
+    background-color: var(--ag-foreground-color);
+  } */
+  @font-face { font-family: 'GmarketSans'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff'); font-weight: 100; font-style: normal; }
+  @font-face { font-family: 'GmarketSans'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff'); font-weight: 500; font-style: normal; }
+  @font-face { font-family: 'GmarketSans'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff'); font-weight: 900; font-style: normal; }
+  
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: block;
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: block;
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: block;
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: block;
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: block;
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: block;
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: block;
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: block;
+  }
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: block;
+  }
+  @font-face {
+    font-family: 'SUITE';
+    font-weight: 300 900;
+    src: url('https://cdn.jsdelivr.net/gh/sun-typeface/SUITE/fonts/variable/woff2/SUITE-Variable.woff2') format('woff2-variations');
+  }
+  @font-face {
+    font-family: 'Danjo-bold-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Danjo-bold-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'HSBombaram21-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/HSBombaram21-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'PuradakGentleGothicR';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.1/PuradakGentleGothicR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+  
+  ::-webkit-scrollbar { width: 6px; height: 6px; background-color: transparent; }
+  ::-webkit-scrollbar-track:hover { background-color: #ececec; }
+  ::-webkit-scrollbar-thumb { 
+    background-color: #9b9b9b; border-radius: 20px; border: 3px solid #333;
+  }
+
+  * {
+    scrollbar-width: thin;
+    /* scrollbar-color: hsl(var(--p)) hsl(var(--b3)); */
+    scrollbar-color: #fff;
+    /* scrollbar-base-color: #333; */
+  }
+
+  
+  
+  
+  .d_btn {
+    @apply cursor-pointer relative inline-block overflow-hidden text-paper hover:text-black bg-black duration-300
+  }
+  .d_btn::before {
+    @apply content-[''] w-full h-full absolute left-0 origin-top bottom-0 bg-paper scale-y-0 transition-transform duration-300
+  }
+  .d_btn:hover::before {
+    @apply scale-y-100 origin-bottom
+  }
+  .list_item_1 {
+    @apply relative
+  }
+  .list_item_1::before {
+    @apply content-[''] block w-1.5 h-1.5 bg-black rounded-lg absolute top-[50%] left-0 translate-y-[-50%]
+  }
+  
+}
+
+
+/* :root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+} */
+
+body {
+  color: rgb(var(--foreground-rgb));
+  /* background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb)); */
+}
+
+.hover-this {
+  transition: all 0.3s ease;
+}
+.cursor {
+  pointer-events: none;
+  position: fixed;
+  padding: 0.3rem;
+  background-color: #0cff35;
+  border-radius: 50%;
+  mix-blend-mode: difference;
+  transition: transform 0.3s ease;
+}
+
+.hover-this:hover ~ .cursor {
+  transform:translate(-50%, -50%) scale(8);
+}
+
+@layer utilities {
+  
 }
