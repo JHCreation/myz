@@ -25,7 +25,7 @@ export default defineConfig({
     tsconfigPaths(),
   ],
   esbuild: {
-    // pure: process.env.NODE_ENV === 'production' ? ['console.log'] : [],
+    pure: process.env.NODE_ENV === 'production' ? ['console.log'] : [],
     // drop: build ? ['console', 'debugger'] : [],
   },
   ssr: {
