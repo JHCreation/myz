@@ -43,7 +43,7 @@ const Works= ({params})=> {
                 <Link 
                   to={`./${d.id}`} key={d.id} 
                   preventScrollReset={true}
-                  className="border p-2 min-h-[200px] "
+                  className="border p-2 min-h-[200px] mt-10"
                 >
                   <p className="text-xs text-accent-content ">
                     {d.key}

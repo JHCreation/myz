@@ -79,7 +79,7 @@ export async function loader() {
   dotenv.config({ path: path.resolve(process.cwd(), `.env.${env}.local`) });
   dotenv.config({ path: path.resolve(process.cwd(), '.env.local') });
   dotenv.config(); // 기본 .env 파일
-  console.log('env:',env, 'url:', process.env)
+  // console.log('env:',env, 'url:', process.env)
   return json({
     ENV: {
       SOME_SECRET: process.env.REMIX_PUBLIC_SOME_SECRET,
